@@ -1,0 +1,22 @@
+<section>
+  <div class="page-header">
+    <h1>Doodles</h1>
+  </div>
+  <div class="list-group">
+    <a ng-repeat="doodle in vm.doodles"
+       ui-sref="doodles.view({ doodleId: doodle._id })"
+       class="list-group-item">
+      <small class="list-group-item-text">
+        Posted on
+        <span ng-bind="doodle.created | date:'mediumDate'"></span>
+        by
+        <span ng-if="doodle.user" ng-bind="doodle.user.displayName"></span>
+        <span ng-if="!doodle.user">Deleted User</span>
+      </small>
+      <h4 class="list-group-item-heading" ng-bind="doodle.name"></h4>
+    </a>
+  </div>
+  <div class="alert alert-warning text-center" ng-if="vm.doodles.$resolved && !vm.doodles.length">
+    No Doodles yet, why don't you <a ui-sref="doodles.create">create one</a>?
+  </div>
+</section>
